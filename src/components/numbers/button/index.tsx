@@ -8,6 +8,7 @@ import { BLOCK_COORDS, N, NUMBERS } from 'typings'
 
 interface IProps {
     value: NUMBERS
+    disabled?: boolean
 }
 
 interface IState {
@@ -15,7 +16,7 @@ interface IState {
     selectedValue: N
 }
 
-const NumberButton: FC<IProps> = ({ value }) => {
+const NumberButton: FC<IProps> = ({ value, disabled }) => {
     const state = useSelector<IReducer, IState>(({ selectedBlock, workingGrid }) => ({
         selectedBlock,
         selectedValue:
@@ -32,7 +33,7 @@ const NumberButton: FC<IProps> = ({ value }) => {
     }, [dispatch, state.selectedBlock, state.selectedValue, value])
     
     return (
-        <Button onClick={fill}>{value}</Button>
+        <Button onClick={fill} disabled={disabled}>{value}</Button>
     )
 }
 
